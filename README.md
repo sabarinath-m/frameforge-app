@@ -11,21 +11,6 @@ Kotlin (Android) / Swift+OpenCV (iOS) camera frame processor doing real
 grayscale extraction, Canny edge detection, and contour-based
 quadrilateral finding — not a black-box community plugin.
 
-## Screenshots
-
-Captured live on an Android emulator via `adb` tap/screenshot automation
-— not mocked, not a simulator placeholder:
-
-| | | |
-|---|---|---|
-| ![Empty document list](docs/screenshots/01-document-list-empty.png) | ![Live camera with detection running](docs/screenshots/02-live-camera-detection.png) | ![Manual corner adjustment](docs/screenshots/03-corner-adjustment.png) |
-| 1. Document list | 2. Live camera — the native `detectContours` frame processor running against a real (virtual-scene) camera feed | 3. Manual corner adjustment — drag handles, backed by plain React state |
-
-| | |
-|---|---|
-| ![Warped image with OCR result](docs/screenshots/04-warped-image-ocr-result.png) | ![List reactively shows the new scan](docs/screenshots/05-saved-document-in-list.png) |
-| 4. After "Confirm" — real `warpPerspective` output (visibly skewed, proving the geometry actually ran) + ML Kit OCR result ("No text recognized" is *correct* here — there's no text in the test scene) | 5. Saved scan appears in the list, backed by Redux |
-
 ## 1. Problem
 
 Every "document scanner" tutorial glues together a camera library and an
@@ -157,7 +142,6 @@ Verified directly, in this pass:
   → real `warpPerspective` call (visibly distorts the image, confirming
   actual geometry ran, not a passthrough) → real ML Kit OCR call →
   editable result screen → save to disk → list reactively updates.
-  Screenshots above are from this exact run.
 - The native contour-detection Kotlin code was exercised against real
   camera frames from the emulator's virtual scene camera (confirmed via
   `FrameProcessorPluginRegistry` logs and OpenCV's own native init log) —
